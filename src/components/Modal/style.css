@@ -1,4 +1,25 @@
-.modal__header{
+.modal__header {
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  width: 30%;
+}
+
+.modal__foot button{
+  color: white;
+  width: 100%;
+  padding: 30px;
+  background-color: rgb(50, 87, 243);
 }

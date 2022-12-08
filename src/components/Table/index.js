@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import './index.css'
+import "./index.css"
 
 import { tableHeaders } from "../../data/constants"
 import { tableData } from "../../data"
@@ -33,17 +33,18 @@ const Table = () => {
             <td>${ele["Unpaid Payouts"]}</td>
             <td>${ele["Ready Payouts"]}</td>
             <td>View ➜</td>
-            <td><img style={{width: ''}}  src="/gitbox.jpg" alt="img"/></td>
             <td>
-              <button onClick={() => setIsShowModal(true)}>Send payment ➢</button>
-              <Modal
-                isShowModal={isShowModal}
-                setIsShowModal={setIsShowModal}
-              />
+              <img style={{ width: "" }} src="/gitbox.jpg" alt="img" />
+            </td>
+            <td>
+              <button onClick={() => setIsShowModal(true)}>
+                Send payment ➢
+              </button>
             </td>
           </tr>
         ))}
       </tbody>
+      <Modal isShowModal={isShowModal} setIsShowModal={setIsShowModal} />
     </table>
   )
 }
