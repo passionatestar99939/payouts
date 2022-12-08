@@ -3,14 +3,14 @@ import ReactModal from "react-modal"
 
 import "./style.css"
 
-const Modal = (props) => {
+const Modal = () => {
   const ref = useRef(null)
-  // const [isShowModal, setIsShowModal] = useState(false)
+  const [isShowModal, setIsShowModal] = useState(false)
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
-        props.setIsShowModal(false)
+        setIsShowModal(false)
       }
     }
     document.addEventListener("click", handleClickOutside, true)
@@ -24,7 +24,7 @@ const Modal = (props) => {
       <div className="modal__header">
         <div>Modal</div>
         <div>
-          <button onClick={() => props.setIsShowModal(false)}>&times;</button>
+          <button onClick={() => setIsShowModal(false)}>&times;</button>
         </div>
       </div>
     )
@@ -38,10 +38,16 @@ const Modal = (props) => {
 
   return (
     <div ref={ref}>
-      <ReactModal
-        isOpen={props.isShowModal}
-        contentLabel="Minimal Modal Example"
-      >
+      <div>
+        <button
+          className="btn btn-primary"
+          onClick={() => setIsShowModal(true)}
+        >
+          Open Modal
+        </button>
+      </div>
+
+      <ReactModal isOpen={isShowModal} contentLabel="Minimal Modal Example">
         <ModalHeader />
         <ModalBody />
       </ReactModal>

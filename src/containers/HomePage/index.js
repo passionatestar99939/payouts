@@ -1,11 +1,14 @@
 import React from "react"
-// import { Container, Row, Col } from "react-bootstrap";
+import Header from "../../components/Header"
+import Body from "../../components/Body"
 import Modal from "../../components/Modal"
 
 const HomePage = () => {
   return (
     <div>
-      <Modal />
+      <Header />
+      <Body />
+      {/* <Modal /> */}
     </div>
   )
 }
