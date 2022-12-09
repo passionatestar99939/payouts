@@ -1,13 +1,18 @@
 import React, { useState, useEffect, useRef } from "react"
 import ReactModal from "react-modal"
-import { tableData } from "../../data"
+
+import { useSelector, useDispatch } from "react-redux"
+import { updateData } from "../../store/slices/mainTableSlice"
 
 import "./style.css"
 
 const Modal = (props) => {
+  const tableData = useSelector((state) => state.mainTable.data)
+  const dispatch = useDispatch()
+
   const ref = useRef(null)
   // const [isShowModal, setIsShowModal] = useState(false)
-  let tempTableData = [...props.tableDataState]
+  let tempTableData = [...tableData]
   const storeCredit = useRef(0)
   const tremendous = useRef(0)
   const total = useRef(0)
@@ -25,7 +30,7 @@ const Modal = (props) => {
   const sendPayouts = () => {
     props.setIsShowModal(false)
     const payoutsArray = []
-    props.tableDataState.forEach((ele) => {
+    tableData.forEach((ele) => {
       // if (ele.checked)
       //   payoutsArray.push([ele["Affiliate Name"], ele["Unpaid Payouts"]])
       if (ele.checked) {
@@ -83,15 +88,18 @@ const Modal = (props) => {
             </tr>
           </thead>
           <tbody>
-            {props.tableDataState.map((ele, index) => (
+            {tableData.map((ele, index) => (
               <tr key={index}>
                 <td>
                   <input
                     type="checkbox"
                     checked={ele.checked}
                     onChange={() => {
-                      tempTableData[index].checked ^= 1
-                      props.setTableDataState(tempTableData)
+                      tempTableData[index] = {
+                        ...tempTableData[index],
+                        checked: tempTableData[index].checked ^ 1,
+                      }
+                      dispatch(updateData({ data: tempTableData }))
                       calculate()
                     }}
                   />

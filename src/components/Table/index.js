@@ -1,13 +1,20 @@
 import React, { useState } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { updateData } from "../../store/slices/mainTableSlice"
+
 import "./index.css"
 
 import { tableHeaders } from "../../data/constants"
-import { tableData } from "../../data"
+// import { tableData } from "../../data"
 import Modal from "../Modal"
 
 const Table = () => {
   const [isShowModal, setIsShowModal] = useState(false)
-  const [tableDataState, setTableDataState] = useState([...tableData])
+  const tableData = useSelector((state) => state.mainTable.data)
+  const dispatch = useDispatch()
+
+  // const [tableData, setTableDataState] = useState([...tableData])
+
   let tempTableData = [...tableData]
 
   return (
@@ -23,13 +30,16 @@ const Table = () => {
         </tr>
       </thead>
       <tbody>
-        {tableDataState.map((ele, index) => (
+        {tableData.map((ele, index) => (
           <tr
             key={index}
             onClick={() => {
-              // tempTableData[index].checked ^= 1
-              // setTableDataState(tempTableData)
-              // console.log(`???=>ele:${ele.checked}`)
+              tempTableData[index] = {
+                ...tempTableData[index],
+                checked: tempTableData[index].checked ^ 1,
+              }
+              dispatch(updateData({ data: tempTableData }))
+              console.log(`???=>ele while clicking row:${ele.checked}`)
             }}
           >
             <td>
@@ -37,9 +47,12 @@ const Table = () => {
                 type="checkbox"
                 checked={ele.checked}
                 onChange={() => {
-                  tempTableData[index].checked ^= 1
-                  setTableDataState(tempTableData)
-                  console.log(`???=>ele:${ele.checked}`)
+                  // tempTableData[index] = {
+                  //   ...tempTableData[index],
+                  //   checked: tempTableData[index].checked ^ 1,
+                  // }
+                  // dispatch(updateData({ data: tempTableData }))
+                  console.log(`???=>ele onchange:${ele.checked}`)
                 }}
               />
             </td>
@@ -65,12 +78,7 @@ const Table = () => {
           </tr>
         ))}
       </tbody>
-      <Modal
-        isShowModal={isShowModal}
-        setIsShowModal={setIsShowModal}
-        tableDataState={tableDataState}
-        setTableDataState={setTableDataState}
-      />
+      <Modal isShowModal={isShowModal} setIsShowModal={setIsShowModal} />
     </table>
   )
 }
