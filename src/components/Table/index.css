@@ -1,19 +1,19 @@
-table {
+table.main-table {
   background-color: white;
 }
 
-table,
-th,
-td {
+table.main-table,
+table.main-table th,
+table.main-table td {
   border-collapse: collapse;
 }
 
-th,
-td {
+table.main-table th,
+table.main-table td {
   border-bottom: 3px solid rgb(243, 246, 252);
 }
 
-tr:hover {
+table.main-table tr:hover {
   background-color: rgb(147, 149, 253);
   cursor: pointer;
 }

@@ -1,4 +1,8 @@
 .modal__header {
+  padding: 15px;
+}
+
+.modal__header > div {
   position: relative;
   display: flex;
   justify-content: center;
@@ -14,12 +18,32 @@
   overflow: auto;
   border-radius: 4px;
   outline: none;
-  width: 30%;
+  max-height: 80vh;
 }
 
-.modal__foot button{
+.modal__foot button {
   color: white;
   width: 100%;
   padding: 30px;
   background-color: rgb(50, 87, 243);
+}
+
+.modal__table td:nth-child(1) {
+  padding: 10px 30px;
+  text-align: center;
+}
+
+.modal__table td:nth-child(2) {
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.modal__table td:nth-child(3) {
+  padding: 10px 10px;
+  text-align: center;
+}
+
+.modal table th,
+.modal table td {
+  padding: 9px;
 }

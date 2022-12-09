@@ -7,9 +7,11 @@ import Modal from "../Modal"
 
 const Table = () => {
   const [isShowModal, setIsShowModal] = useState(false)
+  const [tableDataState, setTableDataState] = useState([...tableData])
+  let tempTableData = [...tableData]
 
   return (
-    <table>
+    <table className="main-table">
       <thead>
         <tr>
           <th>
@@ -21,10 +23,25 @@ const Table = () => {
         </tr>
       </thead>
       <tbody>
-        {tableData.map((ele, index) => (
-          <tr key={index}>
+        {tableDataState.map((ele, index) => (
+          <tr
+            key={index}
+            onClick={() => {
+              // tempTableData[index].checked ^= 1
+              // setTableDataState(tempTableData)
+              // console.log(`???=>ele:${ele.checked}`)
+            }}
+          >
             <td>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={ele.checked}
+                onChange={() => {
+                  tempTableData[index].checked ^= 1
+                  setTableDataState(tempTableData)
+                  console.log(`???=>ele:${ele.checked}`)
+                }}
+              />
             </td>
             <td>{ele["Affiliate Name"]}</td>
             <td>{ele["Most recent referral"]}</td>
@@ -34,7 +51,11 @@ const Table = () => {
             <td>${ele["Ready Payouts"]}</td>
             <td>View ➜</td>
             <td>
-              <img style={{ width: "" }} src="/gitbox.jpg" alt="img" />
+              <img
+                style={{ width: "" }}
+                src={ele.Type === "Store Credit" ? "/gitbox.jpg" : "img"}
+                alt="img"
+              />
             </td>
             <td>
               <button onClick={() => setIsShowModal(true)}>
@@ -44,7 +65,12 @@ const Table = () => {
           </tr>
         ))}
       </tbody>
-      <Modal isShowModal={isShowModal} setIsShowModal={setIsShowModal} />
+      <Modal
+        isShowModal={isShowModal}
+        setIsShowModal={setIsShowModal}
+        tableDataState={tableDataState}
+        setTableDataState={setTableDataState}
+      />
     </table>
   )
 }

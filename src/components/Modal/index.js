@@ -1,13 +1,49 @@
 import React, { useState, useEffect, useRef } from "react"
 import ReactModal from "react-modal"
+import { tableData } from "../../data"
 
 import "./style.css"
 
 const Modal = (props) => {
   const ref = useRef(null)
   // const [isShowModal, setIsShowModal] = useState(false)
+  let tempTableData = [...props.tableDataState]
+  const storeCredit = useRef(0)
+  const tremendous = useRef(0)
+  const total = useRef(0)
+
+  const calculate = () => {
+    storeCredit.current = tremendous.current = total.current = 0
+
+    tableData.forEach((ele) => {
+      storeCredit.current += ele.checked ? ele["Unpaid Payouts"] : 0
+    })
+    storeCredit.current = storeCredit.current.toFixed(2)
+    total.current = storeCredit.current
+  }
+
+  const sendPayouts = () => {
+    props.setIsShowModal(false)
+    const payoutsArray = []
+    props.tableDataState.forEach((ele) => {
+      // if (ele.checked)
+      //   payoutsArray.push([ele["Affiliate Name"], ele["Unpaid Payouts"]])
+      if (ele.checked) {
+        const payout = {
+          name: ele["Affiliate Name"],
+          amount: ele["Unpaid Payouts"],
+        }
+        payoutsArray.push(payout)
+        console.log(payout)
+      }
+    })
+    console.log(
+      `???=>payoutsArray:${payoutsArray} length:${payoutsArray.length}`
+    )
+  }
 
   useEffect(() => {
+    calculate()
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
         props.setIsShowModal(false)
@@ -22,22 +58,74 @@ const Modal = (props) => {
   const ModalHeader = () => {
     return (
       <div className="modal__header">
-        <div style={{ position: "absolute", top: "0px", left: "0px" }}>
-          <button onClick={() => props.setIsShowModal(false)}>← Back</button>
+        <div>
+          <div style={{ position: "absolute", top: "0px", left: "0px" }}>
+            <button onClick={() => props.setIsShowModal(false)}>← Back</button>
+          </div>
+          <div>Confirm Payouts</div>
         </div>
-        <div>Confirm Payouts</div>
       </div>
     )
   }
 
   const ModalBody = () => {
-    return <div></div>
+    return (
+      <div>
+        <div style={{ textAlign: "center" }}>
+          The following affiliates will be sent payouts:
+        </div>
+        <table className="modal__table">
+          <thead>
+            <tr>
+              <th>Affiliate</th>
+              <th>Commission</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            {props.tableDataState.map((ele, index) => (
+              <tr key={index}>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={ele.checked}
+                    onChange={() => {
+                      tempTableData[index].checked ^= 1
+                      props.setTableDataState(tempTableData)
+                      calculate()
+                    }}
+                  />
+                  {ele["Affiliate Name"]}
+                </td>
+                <td>${ele["Unpaid Payouts"]}</td>
+                <td>{ele.Type}</td>
+              </tr>
+            ))}
+            <tr>
+              <td>Store Credit:</td>
+              <td></td>
+              <td>${storeCredit.current}</td>
+            </tr>
+            <tr>
+              <td>Tremendous:</td>
+              <td></td>
+              <td>${tremendous.current}</td>
+            </tr>
+            <tr>
+              <td>Total:</td>
+              <td></td>
+              <td>${total.current}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    )
   }
 
   const ModalFoot = () => {
     return (
       <div className="modal__foot">
-        <button>Send payouts ➢</button>
+        <button onClick={sendPayouts}>Send payouts ➢</button>
       </div>
     )
   }
