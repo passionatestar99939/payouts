@@ -71,7 +71,14 @@ const Table = () => {
               />
             </td>
             <td>
-              <button onClick={() => setIsShowModal(true)}>
+              <button
+                onClick={(e) => {
+                  setIsShowModal(true)
+                  e.stopPropagation();
+                  // e.preventDefault();
+
+                }}
+              >
                 Send payment ➢
               </button>
             </td>
