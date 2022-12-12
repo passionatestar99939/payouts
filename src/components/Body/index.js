@@ -1,14 +1,14 @@
 import React from "react"
 
 import Tab from "../Tab"
-import SearchBar from "../SearchBar"
+import NavSearchBar from "../SearchNavBar"
 import Table from "../Table"
 
 const Body = () => {
   return (
     <div>
       <Tab />
-      <SearchBar />
+      <NavSearchBar />
       <Table />
     </div>
   )

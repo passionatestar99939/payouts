@@ -18,3 +18,56 @@ export const tableHeaders = [
   "Type",
   "Actions",
 ]
+
+export const menuItems = [
+  {
+    title: "Sort by",
+    url: "/",
+    submenu: [
+      {
+        title: "Revenue Generated",
+        submenu: [
+          {
+            title: "Highest first",
+          },
+          {
+            title: "Lowest first",
+          },
+        ],
+      },
+      {
+        title: "Most Recent Feferral",
+        submenu: [
+          {
+            title: "Newest first",
+          },
+          {
+            title: "Oldest first",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Filter by",
+    submenu: [
+      {
+        title: "All pending payouts",
+      },
+      {
+        title: "Ready Payouts",
+      },
+      {
+        title: "No Leaks",
+      },
+    ],
+  },
+  {
+    title: "Actions",
+    submenu: [
+      { title: "Mark as paid" },
+      { title: "Reject" },
+      { title: "Send payouts" },
+    ],
+  },
+]
