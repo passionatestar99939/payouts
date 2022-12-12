@@ -21,11 +21,15 @@ const Modal = (props) => {
   const calculate = () => {
     storeCredit.current = tremendous.current = total.current = 0
 
-    tableData.forEach((ele) => {
+    tempTableData.forEach((ele) => {
       storeCredit.current += ele.checked ? ele["Unpaid Payouts"] : 0
     })
     storeCredit.current = storeCredit.current.toFixed(2)
     total.current = storeCredit.current
+
+    console.log(`???=>total:${total.current}`)
+
+
 
     let totalPaid = 0,
       totalUnpaid = 0,
@@ -36,7 +40,6 @@ const Modal = (props) => {
       totalUnpaid += ele["Unpaid Payouts"]
       totalReady += ele["Ready Payouts"]
     })
-    console.log(`???=>total unpaid:${totalUnpaid}`)
 
     dispatch(
       updateTotalValueData({
