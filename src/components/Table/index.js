@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { updateData } from "../../store/slices/mainTableSlice"
 
-import "./index.css"
+import "./style.css"
 
 import { tableHeaders } from "../../data/constants"
 // import { tableData } from "../../data"
@@ -74,9 +74,8 @@ const Table = () => {
               <button
                 onClick={(e) => {
                   setIsShowModal(true)
-                  e.stopPropagation();
+                  e.stopPropagation()
                   // e.preventDefault();
-
                 }}
               >
                 Send payment ➢
