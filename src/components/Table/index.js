@@ -39,7 +39,6 @@ const Table = () => {
                 checked: tempTableData[index].checked ^ 1,
               }
               dispatch(updateData({ data: tempTableData }))
-              console.log(`???=>ele while clicking row:${ele.checked}`)
             }}
           >
             <td>
@@ -52,7 +51,7 @@ const Table = () => {
                   //   checked: tempTableData[index].checked ^ 1,
                   // }
                   // dispatch(updateData({ data: tempTableData }))
-                  console.log(`???=>ele onchange:${ele.checked}`)
+                  // console.log(`???=>ele onchange:${ele.checked}`)
                 }}
               />
             </td>
