@@ -29,8 +29,6 @@ const Modal = (props) => {
 
     console.log(`???=>total:${total.current}`)
 
-
-
     let totalPaid = 0,
       totalUnpaid = 0,
       totalReady = 0
@@ -112,19 +110,29 @@ const Modal = (props) => {
           </thead>
           <tbody>
             {tableData.map((ele, index) => (
-              <tr key={index}>
+              <tr
+                key={index}
+                onClick={() => {
+                  tempTableData[index] = {
+                    ...tempTableData[index],
+                    checked: tempTableData[index].checked ^ 1,
+                  }
+                  dispatch(updateMainTableData({ data: tempTableData }))
+                  calculate()
+                }}
+              >
                 <td>
                   <input
                     type="checkbox"
-                    checked={ele.checked}
-                    onChange={() => {
-                      tempTableData[index] = {
-                        ...tempTableData[index],
-                        checked: tempTableData[index].checked ^ 1,
-                      }
-                      dispatch(updateMainTableData({ data: tempTableData }))
-                      calculate()
-                    }}
+                    defaultChecked={ele.checked}
+                    // onChange={() => {
+                    //   tempTableData[index] = {
+                    //     ...tempTableData[index],
+                    //     checked: tempTableData[index].checked ^ 1,
+                    //   }
+                    //   dispatch(updateMainTableData({ data: tempTableData }))
+                    //   calculate()
+                    // }}
                   />
                   {ele["Affiliate Name"]}
                 </td>
