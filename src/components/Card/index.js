@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import Modal from "../Modal"
-import "./index.css"
+import "./style.css"
 
 const Card = (props) => {
   const [isShowModal, setIsShowModal] = useState(false)

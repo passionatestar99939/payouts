@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import MenuItems from "./MenuItems"
 import { menuItems } from "../../data/constants"
 
-import "./index.css"
+import "./style.css"
 
 const NavBar = () => {
   const tableData = useSelector((state) => state.mainTable.data)
