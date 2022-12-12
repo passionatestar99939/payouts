@@ -1,7 +1,7 @@
 import React from "react"
 
 import Tab from "../Tab"
-import NavSearchBar from "../SearchNavBar"
+import NavSearchBar from "../NavSearchBar"
 import Table from "../Table"
 
 const Body = () => {

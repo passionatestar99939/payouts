@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from "react"
 import ReactModal from "react-modal"
 
 import { useSelector, useDispatch } from "react-redux"
-import { updateData } from "../../store/slices/mainTableSlice"
+import { updateData as updateMainTableData } from "../../store/slices/mainTableSlice"
+import { updateData as updateTotalValueData } from "../../store/slices/totalValueSlice"
 
 import "./style.css"
 
@@ -25,6 +26,25 @@ const Modal = (props) => {
     })
     storeCredit.current = storeCredit.current.toFixed(2)
     total.current = storeCredit.current
+
+    let totalPaid = 0,
+      totalUnpaid = 0,
+      totalReady = 0
+
+    tableData.forEach((ele) => {
+      totalPaid += ele["Paid Payouts"]
+      totalUnpaid += ele["Unpaid Payouts"]
+      totalReady += ele["Ready Payouts"]
+    })
+    console.log(`???=>total unpaid:${totalUnpaid}`)
+
+    dispatch(
+      updateTotalValueData({
+        paid: totalPaid.toFixed(2),
+        unpaid: totalUnpaid.toFixed(2),
+        ready: totalReady.toFixed(2),
+      })
+    )
   }
 
   const sendPayouts = () => {
@@ -99,7 +119,7 @@ const Modal = (props) => {
                         ...tempTableData[index],
                         checked: tempTableData[index].checked ^ 1,
                       }
-                      dispatch(updateData({ data: tempTableData }))
+                      dispatch(updateMainTableData({ data: tempTableData }))
                       calculate()
                     }}
                   />

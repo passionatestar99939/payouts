@@ -5,7 +5,7 @@ import SearchBar from "../SearchBar"
 
 const NavSearchBar = () => {
   return (
-    <div style={{ display: "flex", justifyContent:"space-between" }}>
+    <div style={{ display: "flex", justifyContent: "space-between" }}>
       <NavBar />
       <SearchBar />
     </div>
