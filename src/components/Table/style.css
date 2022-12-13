@@ -14,6 +14,6 @@ table.main-table td {
 }
 
 table.main-table tr:hover {
-  background-color: rgb(147, 149, 253);
+  background-color: rgb(211, 211, 254);
   cursor: pointer;
 }

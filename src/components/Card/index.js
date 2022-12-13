@@ -6,12 +6,12 @@ const Card = (props) => {
   const [isShowModal, setIsShowModal] = useState(false)
 
   return (
-    <div className="card">
-      <div>
-        <img style={{ width: "16px" }} src="/card-img.png" />
-        {props.title}
+    <div className="card" style={{ padding: "16px 20px" }}>
+      <div className="flex justify-between">
+        <img style={{ width: "16px", height: "16px" }} src="/card-img.png" />
+        <div className="text-xs">{props.title}</div>
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div className="flex justify-between">
         <div>${props.value}</div>
         {props.isReadyPayouts ? (
           <button

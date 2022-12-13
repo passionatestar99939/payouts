@@ -7,6 +7,11 @@
   pointer-events: none;
 }
 
-body{
+body {
   background-color: rgb(243, 246, 252);
+}
+
+button {
+  background-color: rgb(147, 149, 253);
+  margin: 3px;
 }
