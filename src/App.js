@@ -1,18 +1,19 @@
-import Router from "./routes";
+import Router from "./routes"
 
-import logo from "./logo.svg";
-import "./App.css";
+import logo from "./logo.svg"
+import "./App.css"
 
 function App() {
   return (
     <div>
+      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+
       <Router />
     </div>
-  );
+  )
 }
 
-export default App;
-
+export default App
 
 // import { useState } from 'react';
 // import { InfoBox } from './components/InfoBox';
